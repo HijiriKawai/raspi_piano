@@ -69,7 +69,6 @@ int main(void)
 		if (digitalRead(GPIO_4_DO) == 1)
 		{
 			tone(TONE_4_DO * freq_multiplier);
-			printf("%d\n", TONE_4_DO * freq_multiplier);
 		}
 		else if (digitalRead(GPIO_4_RE) == 1)
 		{
