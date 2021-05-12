@@ -1,4 +1,4 @@
-# paspi_piano
+# raspi_piano
 
 ## コンパイル方法
 
