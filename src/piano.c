@@ -40,6 +40,9 @@ void tone(int freq);
 /** ウェイト時間 **/
 #define WAIT_MS 100 /* ミリ秒 */
 
+/* 最大オクターブ */
+#define FREQ_MULTIPLIER_MAX 16
+
 int main(void)
 {
 	int freq_multiplier = 1;
@@ -66,6 +69,11 @@ int main(void)
 
 	while (1)
 	{
+		if (freq_multiplier > FREQ_MULTIPLIER_MAX)
+		{
+			freq_multiplier = 1;
+		}
+
 		if (digitalRead(GPIO_4_DO) == 1)
 		{
 			tone(TONE_4_DO * freq_multiplier);
