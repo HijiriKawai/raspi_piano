@@ -1,7 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <wiringPi.h>
+#include <mcp23017.h>
 #include <softTone.h>
 void tone(int freq);
+void LEDon(int port);
+void LEDoff(int port);
+
+/* I/Oエキスパンダのport */
+#define PINBASE 100
+#define I2CADDRESS 0x27
 
 /** GPIOポートの設定 **/
 #define BUZ_PORT 27			/* ブザー */
@@ -21,6 +29,7 @@ void tone(int freq);
 #define GPIO_4_FAs 24		/* ファ♯ */
 #define GPIO_4_SOs 25		/* ソ♯ */
 #define GPIO_4_RAs 8		/* ラ♯ */
+#define GPIO_LED_4_DO 0 /* ドのLED */
 
 /** 音階の設定 **/
 #define TONE_4_DO 262	 /* ド */
@@ -48,7 +57,16 @@ int main(void)
 	int freq_multiplier = 1;
 	//初期化
 	if (wiringPiSetupGpio() == -1)
-		return 1;
+	{
+		exit(1);
+	}
+
+	if (mcp23017Setup(PINBASE, I2CADDRESS) == -1)
+	{
+		printf("Setup Fail\n");
+		exit(1);
+	}
+
 	softToneCreate(BUZ_PORT);
 	pinMode(OCTAVE_UP, INPUT);
 	pinMode(OCTAVE_DAWN, INPUT);
@@ -66,6 +84,7 @@ int main(void)
 	pinMode(GPIO_4_FAs, INPUT);
 	pinMode(GPIO_4_SOs, INPUT);
 	pinMode(GPIO_4_RAs, INPUT);
+	pinMode(PINBASE + GPIO_LED_4_DO, OUTPUT);
 
 	while (1)
 	{
@@ -77,6 +96,9 @@ int main(void)
 		if (digitalRead(GPIO_4_DO) == 1)
 		{
 			tone(TONE_4_DO * freq_multiplier);
+			LEDon(PINBASE + GPIO_LED_4_DO);
+			delay(50);
+			LEDoff(PINBASE + GPIO_LED_4_DO);
 		}
 		else if (digitalRead(GPIO_4_RE) == 1)
 		{
@@ -155,4 +177,15 @@ int main(void)
 void tone(int freq)
 {
 	softToneWrite(BUZ_PORT, freq);
+}
+
+void LEDon(int port)
+{
+	digitalWrite(port, 1);
+	printf("on\n");
+}
+
+void LEDoff(int port)
+{
+	digitalWrite(port, 0);
 }
