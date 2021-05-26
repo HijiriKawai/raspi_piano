@@ -3,12 +3,12 @@
 ## セットアップ
 ```
 make setup
+make header
 ```
 
 ## コンパイル方法
 
 ```
-mkdir bin
 make all
 ```
 

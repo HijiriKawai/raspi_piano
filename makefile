@@ -1,9 +1,9 @@
 SUFFIX   = .c
-COMPILER = cc
-CFLAGS   = -Wall -O2
+COMPILER = gcc
+CFLAGS   = -Wall -O2 -I./include
 
 SRCDIR   = ./src
-INCLUDE  = wiringPi
+INCLUDE  = wiringPi ./include/raspiio.o
 EXEDIR   = ./bin
 
 SOURCES  = $(wildcard $(SRCDIR)/*$(SUFFIX))
@@ -12,15 +12,19 @@ TARGETS  = $(notdir $(basename $(SOURCES)))
 
 define MAKEALL
 $(1): $(1).o
-		$(COMPILER) -l$(INCLUDE) $(CFLAGS) -o $(EXEDIR)/$(1) $(1).o
+		$(COMPILER) -L./include -l$(INCLUDE) $(CFLAGS) -o $(EXEDIR)/$(1) $(1).o
 		@$(RM) $(1).o
 $(1).o:
-		$(COMPILER) -l$(INCLUDE) $(CFLAGS) -c $(SRCDIR)/$(1)$(SUFFIX)
+		$(COMPILER) -L./include -l$(INCLUDE) $(CFLAGS) -c $(SRCDIR)/$(1)$(SUFFIX)
 endef
 
 .PHONY: all
 all: $(TARGETS)
 $(foreach VAR,$(TARGETS),$(eval $(call MAKEALL,$(VAR))))
+
+.PHONY: header
+header:
+		gcc -lwiringPi -Wall -O2 -c ./include/raspiio.c -o ./include/raspiio.o
 
 #make clean
 .PHONY: clean
