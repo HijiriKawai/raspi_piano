@@ -27,5 +27,10 @@ $(foreach VAR,$(TARGETS),$(eval $(call MAKEALL,$(VAR))))
 clean:
 		$(RM) $(EXEDIR)/*
 
-start:
+.PHONY: start setup
+start: 
 		sudo ./bin/piano
+
+setup:
+		git clone https://github.com/WiringPi/WiringPi.git
+		cd WiringPi && ./build
