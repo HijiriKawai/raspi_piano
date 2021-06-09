@@ -1,10 +1,10 @@
+#include "define.h"
+#include "raspiio.h"
+#include <mcp23017.h>
+#include <softTone.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <wiringPi.h>
-#include <mcp23017.h>
-#include <softTone.h>
-#include "raspiio.h"
-#include "define.h"
 
 int main(void)
 {
@@ -39,6 +39,18 @@ int main(void)
 	pinMode(GPIO_4_SOs, INPUT);
 	pinMode(GPIO_4_RAs, INPUT);
 	pinMode(PINBASE + GPIO_LED_4_DO, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_RE, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_MI, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_FA, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_SO, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_RA, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_SI, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_5_DO, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_DOs, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_REs, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_FAs, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_SOs, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_RAs, OUTPUT);
 
 	while (1)
 	{
@@ -50,57 +62,67 @@ int main(void)
 		if (digitalRead(GPIO_4_DO) == 1)
 		{
 			tone(TONE_4_DO * freq_multiplier);
-			LEDon(PINBASE + GPIO_LED_4_DO);
-			delay(50);
-			LEDoff(PINBASE + GPIO_LED_4_DO);
+			light(PINBASE + GPIO_LED_4_DO);
 		}
 		else if (digitalRead(GPIO_4_RE) == 1)
 		{
 			tone(TONE_4_RE * freq_multiplier);
+			light(PINBASE + GPIO_LED_4_RE);
 		}
 		else if (digitalRead(GPIO_4_MI) == 1)
 		{
 			tone(TONE_4_MI * freq_multiplier);
+			light(PINBASE + GPIO_LED_4_MI);
 		}
 		else if (digitalRead(GPIO_4_FA) == 1)
 		{
 			tone(TONE_4_FA * freq_multiplier);
+			light(PINBASE + GPIO_LED_4_FA);
 		}
 		else if (digitalRead(GPIO_4_SO) == 1)
 		{
 			tone(TONE_4_SO * freq_multiplier);
+			light(PINBASE + GPIO_LED_4_SO);
 		}
 		else if (digitalRead(GPIO_4_RA) == 1)
 		{
 			tone(TONE_4_RA * freq_multiplier);
+			light(PINBASE + GPIO_LED_4_RA);
 		}
 		else if (digitalRead(GPIO_4_SI) == 1)
 		{
 			tone(TONE_4_SI * freq_multiplier);
+			light(PINBASE + GPIO_LED_4_SI);
 		}
 		else if (digitalRead(GPIO_5_DO) == 1)
 		{
 			tone(TONE_5_DO * freq_multiplier);
+			light(PINBASE + GPIO_LED_5_DO);
 		}
 		else if (digitalRead(GPIO_4_DOs) == 1)
 		{
 			tone(TONE_4_DOs * freq_multiplier);
+			light(PINBASE + GPIO_LED_4_DOs);
 		}
 		else if (digitalRead(GPIO_4_REs) == 1)
 		{
 			tone(TONE_4_REs * freq_multiplier);
+			light(PINBASE + GPIO_LED_4_REs);
 		}
 		else if (digitalRead(GPIO_4_FAs) == 1)
 		{
 			tone(TONE_4_FAs * freq_multiplier);
+			light(PINBASE + GPIO_LED_4_FAs);
 		}
 		else if (digitalRead(GPIO_4_SOs) == 1)
 		{
 			tone(TONE_4_SOs * freq_multiplier);
+			light(PINBASE + GPIO_LED_4_SOs);
 		}
 		else if (digitalRead(GPIO_4_RAs) == 1)
 		{
 			tone(TONE_4_RAs * freq_multiplier);
+			light(PINBASE + GPIO_LED_4_RAs);
 		}
 		else if (digitalRead(OCTAVE_UP) == 1)
 		{

@@ -3,7 +3,7 @@
 
 /* I/Oエキスパンダのport */
 #define PINBASE 100
-#define I2CADDRESS 0x27
+#define I2CADDRESS 0x20
 
 /** GPIOポートの設定 **/
 #define BUZ_PORT 27			/* ブザー */
@@ -24,6 +24,18 @@
 #define GPIO_4_SOs 25		/* ソ♯ */
 #define GPIO_4_RAs 8		/* ラ♯ */
 #define GPIO_LED_4_DO 0 /* ドのLED */
+#define GPIO_LED_4_RE 1 /* レのLED */
+#define GPIO_LED_4_MI 2 /* ミのLED */
+#define GPIO_LED_4_FA 3 /* ファのLED */
+#define GPIO_LED_4_SO 4 /* ソのLED */
+#define GPIO_LED_4_RA 5 /* ラのLED */
+#define GPIO_LED_4_SI 6 /* シのLED */
+#define GPIO_LED_5_DO 7 /* ドのLED */
+#define GPIO_LED_4_DOs 11 /* ド♯のLED */
+#define GPIO_LED_4_REs 12 /* レ♯のLED */
+#define GPIO_LED_4_FAs 13 /* ファ♯のLED */
+#define GPIO_LED_4_SOs 14 /* ソ♯のLED */
+#define GPIO_LED_4_RAs 15 /* ラ♯のLED */
 
 /** 音階の設定 **/
 #define TONE_4_DO 262	 /* ド */
