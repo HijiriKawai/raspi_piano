@@ -3,6 +3,7 @@
 #include "raspiio.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <wiringPi.h>
 
 int numberOfLine(char *cp)
 {
@@ -144,10 +145,12 @@ int automaticPlaying(title_e number)
 		counter++;
 	}
 
-	for (size_t i = 0; i < size; i++)
+	for (size_t i = 0; i <= size; i++)
 	{
 		play(score[i]);
+		delay(500);
 	}
+	tone(0);
 
 	fclose(fp);
 

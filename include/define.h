@@ -10,6 +10,7 @@
 #define OCTAVE_UP 21		/* 1オクターブ上げるスイッチ */
 #define OCTAVE_DAWN 20	/*1オクターブ下げるスイッチ*/
 #define OCTAVE_RESET 16 /*音階をデフォルトに戻す*/
+#define AUTOMATIC_PLAY 5 /* 自動演奏 */
 #define GPIO_4_DO 14		/* ド */
 #define GPIO_4_RE 15		/* レ */
 #define GPIO_4_MI 17		/* ミ */

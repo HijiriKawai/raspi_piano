@@ -1,3 +1,4 @@
+#include "automatic.h"
 #include "define.h"
 #include "raspiio.h"
 #include <mcp23017.h>
@@ -138,6 +139,10 @@ int main(void)
 		else if (digitalRead(OCTAVE_RESET))
 		{
 			freq_multiplier = 1;
+		}
+		else if (digitalRead(AUTOMATIC_PLAY))
+		{
+			automaticPlaying(WHENTHESAINTSGOMARCHING);
 		}
 
 		else
