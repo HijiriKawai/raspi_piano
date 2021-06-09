@@ -3,7 +3,7 @@ COMPILER = gcc
 CFLAGS   = -Wall -O2 -I./include
 
 SRCDIR   = ./src
-INCLUDE  = wiringPi ./include/raspiio.o
+INCLUDE  = wiringPi ./include/raspiio.o ./include/automatic.o
 EXEDIR   = ./bin
 
 SOURCES  = $(wildcard $(SRCDIR)/*$(SUFFIX))
@@ -25,6 +25,7 @@ $(foreach VAR,$(TARGETS),$(eval $(call MAKEALL,$(VAR))))
 .PHONY: header
 header:
 		gcc -lwiringPi -Wall -O2 -c ./include/raspiio.c -o ./include/raspiio.o
+		gcc -lwiringPi -Wall -O2 -c ./include/automatic.c -o ./include/automatic.o
 
 #make clean
 .PHONY: clean

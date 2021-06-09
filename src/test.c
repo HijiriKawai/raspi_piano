@@ -1,66 +1,62 @@
-#include "score.h"
+#include "automatic.h"
+#include "define.h"
+#include "raspiio.h"
+#include <mcp23017.h>
+#include <softTone.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <wiringPi.h>
 
-int gyousuu(char *cp);
-
-int main(void)
+int main()
 {
-	FILE *fp;
-	char *fname = "../score/WhenTheSaintsGoMarching.csv";
-	int ret, scale, length;
-	int counter = 0;
-
-	int a = gyousuu(fname);
-
-	score score[a];
-
-	fp = fopen(fname, "r");
-	if (fp == NULL)
+	//初期化
+	if (wiringPiSetupGpio() == -1)
 	{
-		printf("%sファイルが開けません¥n", fname);
-		return -1;
+		exit(1);
 	}
 
-	while ((ret = fscanf(fp, "%d,%d", &scale, &length) != EOF))
+	if (mcp23017Setup(PINBASE, I2CADDRESS) == -1)
 	{
-		score[counter].scale = scale;
-		score[counter].length = length;
-
-		counter++;
+		printf("Setup Fail\n");
+		exit(1);
 	}
 
-	counter = 0;
-	while (counter <= a)
+	softToneCreate(BUZ_PORT);
+	pinMode(OCTAVE_UP, INPUT);
+	pinMode(OCTAVE_DAWN, INPUT);
+	pinMode(OCTAVE_RESET, INPUT);
+	pinMode(GPIO_4_DO, INPUT);
+	pinMode(GPIO_4_RE, INPUT);
+	pinMode(GPIO_4_MI, INPUT);
+	pinMode(GPIO_4_FA, INPUT);
+	pinMode(GPIO_4_SO, INPUT);
+	pinMode(GPIO_4_RA, INPUT);
+	pinMode(GPIO_4_SI, INPUT);
+	pinMode(GPIO_5_DO, INPUT);
+	pinMode(GPIO_4_DOs, INPUT);
+	pinMode(GPIO_4_REs, INPUT);
+	pinMode(GPIO_4_FAs, INPUT);
+	pinMode(GPIO_4_SOs, INPUT);
+	pinMode(GPIO_4_RAs, INPUT);
+	pinMode(PINBASE + GPIO_LED_4_DO, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_RE, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_MI, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_FA, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_SO, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_RA, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_SI, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_5_DO, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_DOs, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_REs, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_FAs, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_SOs, OUTPUT);
+	pinMode(PINBASE + GPIO_LED_4_RAs, OUTPUT);
+
+	while (1)
 	{
-		printf("%d %d\n", score[counter].scale, score[counter].length);
-		counter++;
-	}
-
-	fclose(fp);
-	return 0;
-}
-
-int gyousuu(char *cp)
-{
-	FILE *fp;
-	char buf[256];
-	size_t read_size;
-	int line = 0;
-
-	if ((fp = fopen(cp, "r")) == NULL)
-	{
-		return -1;
-	}
-
-	while ((read_size = fread(buf, 1, 256, fp)) > 0)
-	{
-		for (size_t i = 0; i < read_size; i++)
+		if (digitalRead(GPIO_4_DO) == 1)
 		{
-			if (buf[i] == '\n')
-				line++;
+			automaticPlaying(WHENTHESAINTSGOMARCHING);
 		}
 	}
-
-	return line;
 }
