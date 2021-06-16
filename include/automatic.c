@@ -134,7 +134,7 @@ int automaticPlaying(title_e number)
 	fp = fopen(fname, "r");
 	if (fp == NULL)
 	{
-		printf("%sファイルが開けません \n", fname);
+		printf("%sが開けません \n", fname);
 		return -1;
 	}
 

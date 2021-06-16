@@ -13,12 +13,13 @@ int main(void)
 	//初期化
 	if (wiringPiSetupGpio() == -1)
 	{
+		printf("セットアップに失敗しました\n");
 		exit(1);
 	}
 
 	if (mcp23017Setup(PINBASE, I2CADDRESS) == -1)
 	{
-		printf("Setup Fail\n");
+		printf("セットアップに失敗しました\n");
 		exit(1);
 	}
 
@@ -144,7 +145,6 @@ int main(void)
 		{
 			automaticPlaying(WHENTHESAINTSGOMARCHING);
 		}
-
 		else
 		{
 			tone(0);
