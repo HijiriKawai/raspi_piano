@@ -21,3 +21,8 @@ sudo i2cdetect -y 1
 ## scoreディレクトリ下のcsvファイルについて
 
 左が音階で、右が長さ
+
+
+## 回路図
+
+![](./image/circuit.drawio.svg)
