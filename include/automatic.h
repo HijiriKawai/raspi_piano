@@ -20,7 +20,9 @@ typedef enum
 
 typedef enum
 {
-	WHENTHESAINTSGOMARCHING
+	WHENTHESAINTSGOMARCHING,
+	TWINKLELITTLESTAR,
+	MARYHADALITTLELAMB
 } title_e;
 
 typedef struct

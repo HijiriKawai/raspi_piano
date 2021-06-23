@@ -31,74 +31,74 @@ int numberOfLine(char *cp)
 
 void play(score_t score)
 {
-	int freq_multiplier = 1;
+	int freqMultiplier = 1;
 
 	for (size_t i = 0; i < score.length; i++)
 	{
 		switch (score.scale)
 		{
 		case DO_4:
-			tone(TONE_4_DO * freq_multiplier);
+			tone(TONE_4_DO * freqMultiplier);
 			light(PINBASE + GPIO_LED_4_DO);
 			break;
 
 		case RE_4:
-			tone(TONE_4_RE * freq_multiplier);
+			tone(TONE_4_RE * freqMultiplier);
 			light(PINBASE + GPIO_LED_4_RE);
 			break;
 
 		case MI_4:
-			tone(TONE_4_MI * freq_multiplier);
+			tone(TONE_4_MI * freqMultiplier);
 			light(PINBASE + GPIO_LED_4_MI);
 			break;
 
 		case FA_4:
-			tone(TONE_4_FA * freq_multiplier);
+			tone(TONE_4_FA * freqMultiplier);
 			light(PINBASE + GPIO_LED_4_FA);
 			break;
 
 		case SO_4:
-			tone(TONE_4_SO * freq_multiplier);
+			tone(TONE_4_SO * freqMultiplier);
 			light(PINBASE + GPIO_LED_4_SO);
 			break;
 
 		case RA_4:
-			tone(TONE_4_RA * freq_multiplier);
+			tone(TONE_4_RA * freqMultiplier);
 			light(PINBASE + GPIO_LED_4_RA);
 			break;
 
 		case SI_4:
-			tone(TONE_4_SI * freq_multiplier);
+			tone(TONE_4_SI * freqMultiplier);
 			light(PINBASE + GPIO_LED_4_SI);
 			break;
 
 		case DO_5:
-			tone(TONE_5_DO * freq_multiplier);
+			tone(TONE_5_DO * freqMultiplier);
 			light(PINBASE + GPIO_LED_5_DO);
 			break;
 
 		case DOs_4:
-			tone(TONE_4_DOs * freq_multiplier);
+			tone(TONE_4_DOs * freqMultiplier);
 			light(PINBASE + GPIO_LED_4_DOs);
 			break;
 
 		case REs_4:
-			tone(TONE_4_REs * freq_multiplier);
+			tone(TONE_4_REs * freqMultiplier);
 			light(PINBASE + GPIO_LED_4_REs);
 			break;
 
 		case FAs_4:
-			tone(TONE_4_FAs * freq_multiplier);
+			tone(TONE_4_FAs * freqMultiplier);
 			light(PINBASE + GPIO_LED_4_FAs);
 			break;
 
 		case SOs_4:
-			tone(TONE_4_SOs * freq_multiplier);
+			tone(TONE_4_SOs * freqMultiplier);
 			light(PINBASE + GPIO_LED_4_SOs);
 			break;
 
 		case RAs_4:
-			tone(TONE_4_RAs * freq_multiplier);
+			tone(TONE_4_RAs * freqMultiplier);
 			light(PINBASE + GPIO_LED_4_RAs);
 			break;
 
@@ -120,6 +120,14 @@ int automaticPlaying(title_e number)
 	{
 	case WHENTHESAINTSGOMARCHING:
 		fname = "./score/WhenTheSaintsGoMarching.csv";
+		break;
+
+	case TWINKLELITTLESTAR:
+		fname = "./score/TwinkleLittleStar.csv";
+		break;
+
+	case MARYHADALITTLELAMB:
+		fname = "./score/MaryHadALittleLamb.csv";
 		break;
 
 	default:

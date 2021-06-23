@@ -59,4 +59,7 @@
 /* 最大オクターブ */
 #define FREQ_MULTIPLIER_MAX 16
 
+/* 最大曲数 */
+#define SONG_SELECTOR_MAX 2
+
 #endif
