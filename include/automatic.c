@@ -14,7 +14,7 @@ int numberOfLine(char *cp)
 
 	if ((fp = fopen(cp, "r")) == NULL)
 	{
-		return -1;
+		return ERROR;
 	}
 
 	while ((read_size = fread(buf, 1, 256, fp)) > 0)
@@ -136,6 +136,10 @@ int automaticPlaying(title_e number)
 	}
 
 	size_t size = numberOfLine(fname);
+	if (size == ERROR)
+	{
+		return ERROR;
+	}
 
 	score_t score[size];
 
@@ -143,7 +147,7 @@ int automaticPlaying(title_e number)
 	if (fp == NULL)
 	{
 		printf("%sが開けません \n", fname);
-		return -1;
+		return ERROR;
 	}
 
 	while ((ret = fscanf(fp, "%d,%d", &scale, &length) != EOF))

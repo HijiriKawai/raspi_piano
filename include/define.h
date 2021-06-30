@@ -62,4 +62,6 @@
 /* 最大曲数 */
 #define SONG_SELECTOR_MAX 2
 
+#define ERROR -1
+
 #endif

@@ -13,9 +13,9 @@ int main(void)
 	int freqMultiplier = 1;
 	int songSelector = 0;
 
-	if (setup())
+	if (setup() == ERROR)
 	{
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 
 	while (1)
@@ -112,7 +112,11 @@ int main(void)
 		}
 		else if (digitalRead(AUTOMATIC_PLAY))
 		{
-			automaticPlaying(songSelector);
+			if (automaticPlaying(songSelector) == ERROR)
+			{
+				exit(EXIT_FAILURE);
+			}
+
 			songSelector++;
 		}
 		else
@@ -122,5 +126,5 @@ int main(void)
 		delay(WAIT_MS);
 	}
 
-	return 0;
+	exit(EXIT_SUCCESS);
 }

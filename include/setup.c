@@ -12,13 +12,13 @@ int setup()
 	if (wiringPiSetupGpio() == -1)
 	{
 		printf("セットアップに失敗しました\n");
-		exit(1);
+		return ERROR;
 	}
 
 	if (mcp23017Setup(PINBASE, I2CADDRESS) == -1)
 	{
 		printf("セットアップに失敗しました\n");
-		exit(1);
+		return ERROR;
 	}
 
 	softToneCreate(BUZ_PORT);
