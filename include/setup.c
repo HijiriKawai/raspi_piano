@@ -1,5 +1,6 @@
 #include "setup.h"
 #include "define.h"
+#include "raspiio.h"
 #include <mcp23017.h>
 #include <softTone.h>
 #include <stdio.h>
@@ -51,6 +52,26 @@ int setup()
 	pinMode(PINBASE + GPIO_LED_4_FAs, OUTPUT);
 	pinMode(PINBASE + GPIO_LED_4_SOs, OUTPUT);
 	pinMode(PINBASE + GPIO_LED_4_RAs, OUTPUT);
+
+	for (size_t i = 0; i < 7; i++)
+	{
+		LEDon(PINBASE + i);
+	}
+	for (size_t i = 11; i < 15; i++)
+	{
+		LEDon(PINBASE + i);
+	}
+	tone(TONE_5_DO * 4);
+	delay(100);
+	tone(0);
+	for (size_t i = 0; i < 7; i++)
+	{
+		LEDoff(PINBASE + i);
+	}
+	for (size_t i = 11; i < 15; i++)
+	{
+		LEDoff(PINBASE + i);
+	}
 
 	return 0;
 }
